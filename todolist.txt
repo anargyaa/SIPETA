@@ -1,0 +1,14 @@
+-Buat halaman untuk menampilkan data tanah yang sudah di inputkan user dengan syarat status formulir harus sudah (SELESAI) *data koordinat muncul sesuai dengan yang ada di database 
+-Tentukan / Menambahkan validasi Format Koordinat Lintang dan Bujur di Front-end dan Back-end
+
+-Layout (Fokus pada tampilan halaman utama dan data perencanaan)
+-Hak Akses ()
+-Notifikasi untuk user (Memberi mark di navbar jika ada perubahan data status)
+-Report data perencanaan (Report data bisa dilihat waktu (/minggu /bulan /tahun))
+-Perbaikan database dibagian relasi (Table Konsultasi dan User)
+-Membuat filter di data perencanaan (Filter mencari sesuai dengan : Username , Email, Status)
+-Menambahkan Satus undangan ke kantor <BERES>
+-Perbaikan form input agar tidak bisa diisi oleh tag html <BERES>
+-Ubah judul project (Bayang2 menjadi Pengajuan formulir pengadaan tanah berbasis web)
+-Halaman data konsultasi <BERES>
+-Admin bisa membalas pesan konsultasi dan mengirimkannya ke emal otomatis oleh php
