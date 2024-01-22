@@ -11,9 +11,12 @@
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.awesome-markers/dist/leaflet.awesome-markers.css" />
 
     <style>
         #map {
+            z-index: 1;
+            position: relative;
             height: 400px;
             width: 100%;
         }
@@ -22,63 +25,201 @@
 
 <body>
     <?php include 'navbar.php'; ?>
-    <div class="flex flex-col items-center justify-center">
-        <div class="min-h-screen">
-            <form action="" class="my-24 p-2 rounded rounded-3xl shadow shadow-xl bg-neutral-100">
-                <div class="flex gap-2">
-                    <div id="kelurahan">
-                        <div class="rounded rounded-2xl p-2">
-                            <select id="kelurahanFilter" class="select select-bordered w-full max-w-xs rounded rounded-xl">
-                                <option disabled selected>Kelurahan</option>
-                                <option>Leweungkolot</option>
-                                <option>Cikampak</option>
-                            </select>
-                        </div>
+    <div class="flex flex-col items-center justify-center min-h-screen">
+        <div class="w-7/12">
+            <form action="" class="mt-24 mb-12 p-4 flex justify-between rounded rounded-3xl shadow-xl bg-neutral-100">
+                <div id="kelurahan">
+                    <div class="rounded rounded-2xl ">
+                        <select id="kelurahanFilter" class="select select-bordered w-full max-w-xs rounded rounded-xl">
+                            <option value="all">Semua Kelurahan</option>
+                            <option value="Leweung Kolot">Leweung Kolot</option>
+                            <option value="Cikampak">Cikampak</option>
+                        </select>
                     </div>
-                    <div id="kecamatan">
-                        <div class="rounded rounded-2xl p-2">
-                            <select id="kecamatanFilter" class="select select-bordered w-full max-w-xs rounded rounded-xl">
-                                <option disabled selected>Kecamatan</option>
-                                <option>Ciampea</option>
-                                <option>Cibungbulang</option>
-                            </select>
-                        </div>
+                </div>
+                <div id="kecamatan">
+                    <div class="rounded rounded-2xl ">
+                        <select id="kecamatanFilter" class="select select-bordered w-full max-w-xs rounded rounded-xl">
+                            <option value="all">Kecamatan</option>
+                            <option value="Ciampea">Ciampea</option>
+                            <option value="Cibungbulang">Cibungbulang</option>
+                        </select>
                     </div>
-                    <div id="status">
-                        <div class="rounded rounded-2xl p-2">
-                            <select id="statusFilter" class="select select-bordered w-full max-w-xs rounded rounded-xl">
-                                <option disabled selected>Status</option>
-                                <option>Dalam proses</option>
-                                <option>Terdaftar</option>
-                            </select>
-                        </div>
+                </div>
+                <div id="status">
+                    <div class="rounded rounded-2xl ">
+                        <select id="statusFilter" class="select select-bordered w-full max-w-xs rounded rounded-xl">
+                            <option value="all">Status</option>
+                            <option value="Aktif">Aktif</option>
+                            <option value="Non-Aktif">Non-Aktif</option>
+                        </select>
                     </div>
-                    <div id="nama-instansi">
-                        <div class="rounded rounded-2xl p-2">
-                            <input type="text" placeholder="Masukkan Nama Instansi" id="namaInstansiFilter"
-                                class="input input-bordered w-full max-w-xs rounded rounded-xl" />
-                        </div>
+                </div>
+                <div id="nama-instansi">
+                    <div class="rounded rounded-2xl ">
+                        <input type="text" placeholder="Masukkan Nama Instansi" id="namaInstansiFilter"
+                            class="input input-bordered w-full max-w-xl rounded rounded-xl" />
                     </div>
                 </div>
             </form>
         </div>
+
+        <div class="w-full flex justify-center py-10 bg-yellow-900">
+            <div class="w-7/12 bg-neutral-100 rounded-3xl p-2 shadow-xl">
+                <div id="map" class="rounded-2xl"></div>
+            </div>
+        </div>
+
+        <div class="w-7/12">
+            <div class="mt-12 mb-12 p-4 rounded rounded-3xl shadow-xl bg-neutral-100">
+                <h2>Nama Instansi</h2>
+                <h2>Pimpinan Instansi</h2>
+                <h2>Perkiraan Panjang</h2>
+                <h2>Perkiraan Luas</h2>
+                <h2>Perkiraan Alokasi</h2>
+            </div>
+        </div>
     </div>
 
+    <?php include 'footer.php'; ?>
 
-	<footer class="footer p-10 bg-yellow-900 text-neutral-content">
-	  <aside>
-	    <svg width="50" height="50" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" class="fill-current"><path d="M22.672 15.226l-2.432.811.841 2.515c.33 1.019-.209 2.127-1.23 2.456-1.15.325-2.148-.321-2.463-1.226l-.84-2.518-5.013 1.677.84 2.517c.391 1.203-.434 2.542-1.831 2.542-.88 0-1.601-.564-1.86-1.314l-.842-2.516-2.431.809c-1.135.328-2.145-.317-2.463-1.229-.329-1.018.211-2.127 1.231-2.456l2.432-.809-1.621-4.823-2.432.808c-1.355.384-2.558-.59-2.558-1.839 0-.817.509-1.582 1.327-1.846l2.433-.809-.842-2.515c-.33-1.02.211-2.129 1.232-2.458 1.02-.329 2.13.209 2.461 1.229l.842 2.515 5.011-1.677-.839-2.517c-.403-1.238.484-2.553 1.843-2.553.819 0 1.585.509 1.85 1.326l.841 2.517 2.431-.81c1.02-.33 2.131.211 2.461 1.229.332 1.018-.21 2.126-1.23 2.456l-2.433.809 1.622 4.823 2.433-.809c1.242-.401 2.557.484 2.557 1.838 0 .819-.51 1.583-1.328 1.847m-8.992-6.428l-5.01 1.675 1.619 4.828 5.011-1.674-1.62-4.829z"></path></svg>
-	    <p>Anargya :)<br/>Make by instinc</p>
-	  </aside> 
-	  <nav>
-	    <header class="footer-title">Social</header> 
-	    <div class="grid grid-flow-col gap-4">
-	      <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg></a>
-	      <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path></svg></a>
-	      <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path></svg></a>
-	    </div>
-	  </nav>
-	</footer>
+    <?php
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "testing";
+
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+        if (!$conn) {
+            die("Koneksi gagal: " . mysqli_connect_error());
+        }
+
+        $sql = "SELECT nama_instansi, koordinat_lintang, koordinat_bujur, kelurahan, kecamatan, status FROM instansi";
+        $result = mysqli_query($conn, $sql);
+
+        $locations = array();
+
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $locations[] = array(
+                    'nama_instansi' => $row['nama_instansi'],
+                    'lat' => $row['koordinat_lintang'],
+                    'lng' => $row['koordinat_bujur'],
+                    'kelurahan' => $row['kelurahan'],
+                    'kecamatan' => $row['kecamatan'],
+                    'status' => $row['status']
+                );
+            }
+        }
+
+        mysqli_close($conn);
+    ?>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.awesome-markers/dist/leaflet.awesome-markers.js"></script>
+
+    <script>
+        var map;
+        var markers = [];
+
+        function initMap() {
+            var center = { lat: -6.265757, lng: 106.800000 };
+            map = L.map('map').setView(center, 10);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Tampilkan semua marker pada saat halaman dimuat
+            displayMarkers();
+
+            // Atur event listener untuk form filter
+            document.getElementById('kelurahanFilter').addEventListener('change', applyFilter);
+            document.getElementById('kecamatanFilter').addEventListener('change', applyFilter);
+            document.getElementById('statusFilter').addEventListener('change', applyFilter);
+            document.getElementById('namaInstansiFilter').addEventListener('input', applyFilter);
+        }
+
+        function displayMarkers() {
+            // Hapus semua marker yang ada
+            clearMarkers();
+
+            var locations = <?php echo json_encode($locations); ?>;
+
+            // Tambahkan kembali marker sesuai data terbaru
+            for (var i = 0; i < locations.length; i++) {
+                addMarker(locations[i]);
+            }
+        }
+
+        function addMarker(location) {
+            var markerColor = location.status === 'Aktif' ? 'green' : 'red';
+
+            var marker = L.marker([location.lat, location.lng], {
+                icon: L.AwesomeMarkers.icon({
+                    icon: 'info-sign',
+                    markerColor: markerColor
+                })
+            }).addTo(map);
+
+            marker.bindPopup(
+                'Instansi: ' + location.nama_instansi + '<br>' +
+                'Kelurahan: ' + location.kelurahan + '<br>' +
+                'Kecamatan: ' + location.kecamatan + '<br>' +
+                'Status: ' + location.status
+            );
+
+            markers.push(marker);
+        }
+
+        function clearMarkers() {
+            // Hapus semua marker yang ada dari peta
+            for (var i = 0; i < markers.length; i++) {
+                map.removeLayer(markers[i]);
+            }
+
+            // Bersihkan array marker
+            markers = [];
+        }
+
+        function applyFilter() {
+            // Dapatkan nilai dari elemen form
+            var kelurahan = document.getElementById('kelurahanFilter').value;
+            var kecamatan = document.getElementById('kecamatanFilter').value;
+            var status = document.getElementById('statusFilter').value.toLowerCase();
+            var namaInstansi = document.getElementById('namaInstansiFilter').value.toLowerCase();
+
+            // Hapus semua marker yang ada
+            clearMarkers();
+
+            var locations = <?php echo json_encode($locations); ?>;
+
+            // Tambahkan kembali marker sesuai dengan data terbaru dan kriteria filter
+            for (var i = 0; i < locations.length; i++) {
+                var location = locations[i];
+                var matchFilter = false;
+
+                // Periksa kondisi untuk setiap filter
+                if (kelurahan === 'all' || kelurahan === location.kelurahan) {
+                    if (kecamatan === 'all' || kecamatan === location.kecamatan) {
+                        if (status === 'all' || status === location.status.toLowerCase()) {
+                            if (namaInstansi === '' || location.nama_instansi.toLowerCase().includes(namaInstansi)) {
+                                matchFilter = true;
+                            }
+                        }
+                    }
+                }
+
+                // Tambahkan marker jika memenuhi kriteria filter
+                if (matchFilter) {
+                    addMarker(location);
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', initMap);
+    </script>
 
 </body>
 </html>

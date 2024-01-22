@@ -1,4 +1,4 @@
--Buat halaman untuk menampilkan data tanah yang sudah di inputkan user dengan syarat status formulir harus sudah (SELESAI) *data koordinat muncul sesuai dengan yang ada di database 
+-Buat halaman untuk menampilkan data tanah yang sudah di inputkan user dengan syarat status formulir harus sudah (SELESAI) *data koordinat muncul sesuai dengan yang ada di database <BERES>
 -Tentukan / Menambahkan validasi Format Koordinat Lintang dan Bujur di Front-end dan Back-end
 
 -Layout (Fokus pada tampilan halaman utama dan data perencanaan)
