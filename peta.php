@@ -23,61 +23,54 @@
     </style>
 </head>
 
+
 <body>
     <?php include 'navbar.php'; ?>
-    <div class="flex flex-col items-center justify-center min-h-screen">
-        <div class="w-7/12">
-            <form action="" class="mt-24 mb-12 p-4 flex justify-between rounded rounded-3xl shadow-xl bg-neutral-100">
-                <div id="kelurahan">
-                    <div class="rounded rounded-2xl ">
-                        <select id="kelurahanFilter" class="select select-bordered w-full max-w-xs rounded rounded-xl">
-                            <option value="all">Semua Kelurahan</option>
-                            <option value="Leweung Kolot">Leweung Kolot</option>
-                            <option value="Cikampak">Cikampak</option>
-                        </select>
+    <div class="flex min-h-screen items-center justify-center min-h-screen">
+        <div class="w-8/12 min-h-screen my-24 p-4 flex flex-col rounded rounded-3xl bg-neutral-100 gap-10 shadow-xl">
+                <form action="" class="w-full p-4 flex justify-between rounded rounded-2xl shadow-md bg-neutral-200 gap-4">
+                    <div id="kelurahan">
+                        <div class="rounded rounded-2xl ">
+                            <select id="kelurahanFilter" class="select select-bordered w-full max-w-xs rounded rounded-xl">
+                                <option value="all">Semua Kelurahan</option>
+                                <option value="Leweung Kolot">Leweung Kolot</option>
+                                <option value="Cikampak">Cikampak</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div id="kecamatan">
-                    <div class="rounded rounded-2xl ">
-                        <select id="kecamatanFilter" class="select select-bordered w-full max-w-xs rounded rounded-xl">
-                            <option value="all">Kecamatan</option>
-                            <option value="Ciampea">Ciampea</option>
-                            <option value="Cibungbulang">Cibungbulang</option>
-                        </select>
+                    <div id="kecamatan">
+                        <div class="rounded rounded-2xl ">
+                            <select id="kecamatanFilter" class="select select-bordered w-full max-w-xs rounded rounded-xl">
+                                <option value="all">Kecamatan</option>
+                                <option value="Ciampea">Ciampea</option>
+                                <option value="Cibungbulang">Cibungbulang</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div id="status">
-                    <div class="rounded rounded-2xl ">
-                        <select id="statusFilter" class="select select-bordered w-full max-w-xs rounded rounded-xl">
-                            <option value="all">Status</option>
-                            <option value="Aktif">Aktif</option>
-                            <option value="Non-Aktif">Non-Aktif</option>
-                        </select>
+                    <div id="status">
+                        <div class="rounded rounded-2xl ">
+                            <select id="statusFilter" class="select select-bordered w-full max-w-xs rounded rounded-xl">
+                                <option value="all">Status</option>
+                                <option value="Aktif">Aktif</option>
+                                <option value="Non-Aktif">Non-Aktif</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div id="nama-instansi">
-                    <div class="rounded rounded-2xl ">
-                        <input type="text" placeholder="Masukkan Nama Instansi" id="namaInstansiFilter"
-                            class="input input-bordered w-full max-w-xl rounded rounded-xl" />
+                    <div id="nama-instansi">
+                        <div class="rounded rounded-2xl ">
+                            <input type="text" placeholder="Masukkan Nama Instansi" id="namaInstansiFilter"
+                                class="input input-bordered w-full max-w-xs rounded rounded-xl" />
+                        </div>
                     </div>
-                </div>
-            </form>
-        </div>
+                </form>
 
-        <div class="w-full flex justify-center py-10 bg-yellow-900">
-            <div class="w-7/12 bg-neutral-100 rounded-3xl p-2 shadow-xl">
-                <div id="map" class="rounded-2xl"></div>
-            </div>
-        </div>
+                <div class="w-full bg-neutral-200 rounded-3xl p-2 shadow-md">
+                    <div id="map" class="rounded-2xl"></div>
+                </div>
 
-        <div class="w-7/12">
-            <div class="mt-12 mb-12 p-4 rounded rounded-3xl shadow-xl bg-neutral-100">
-                <h2>Nama Instansi</h2>
-                <h2>Pimpinan Instansi</h2>
-                <h2>Perkiraan Panjang</h2>
-                <h2>Perkiraan Luas</h2>
-                <h2>Perkiraan Alokasi</h2>
-            </div>
+                <div id="dataInstansi" class="w-full p-4 rounded rounded-3xl shadow-md bg-neutral-200 flex flex-col">
+                    
+                </div>
         </div>
     </div>
 
@@ -87,7 +80,7 @@
         $servername = "localhost";
         $username = "root";
         $password = "";
-        $dbname = "testing";
+        $dbname = "sipetas";
 
         $conn = mysqli_connect($servername, $username, $password, $dbname);
 
@@ -95,7 +88,7 @@
             die("Koneksi gagal: " . mysqli_connect_error());
         }
 
-        $sql = "SELECT nama_instansi, koordinat_lintang, koordinat_bujur, kelurahan, kecamatan, status FROM instansi";
+        $sql = "SELECT * FROM perencanaan";
         $result = mysqli_query($conn, $sql);
 
         $locations = array();
@@ -103,11 +96,21 @@
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $locations[] = array(
-                    'nama_instansi' => $row['nama_instansi'],
-                    'lat' => $row['koordinat_lintang'],
-                    'lng' => $row['koordinat_bujur'],
+                    'nama_instansi' => $row['nama_i'],
+                    'pimpinan_instansi' => $row['pimpinan_i'],
+                    'peruntukan' => $row['peruntukan'],
+                    'kategori_proyek' => $row['kategori_proyek'],
                     'kelurahan' => $row['kelurahan'],
                     'kecamatan' => $row['kecamatan'],
+                    'lat' => $row['koordinat_l'],
+                    'lng' => $row['koordinat_b'],
+                    'lokasi' => $row['lokasi'],
+                    'rencana_tr' => $row['rencana_tr'],
+                    'perkiraan_l' => $row['perkiraan_l'],
+                    'perkiraan_p' => $row['perkiraan_p'],
+                    'perkiraan_a' => $row['perkiraan_a'],
+                    'm_persiapan' => $row['m_persiapan'],
+                    'm_pelaksanaan' => $row['m_pelaksanaan'],
                     'status' => $row['status']
                 );
             }
@@ -122,6 +125,7 @@
     <script>
         var map;
         var markers = [];
+        var locations = <?php echo json_encode($locations); ?>;
 
         function initMap() {
             var center = { lat: -6.265757, lng: 106.800000 };
@@ -131,26 +135,25 @@
                 attribution: '© OpenStreetMap contributors'
             }).addTo(map);
 
-            // Tampilkan semua marker pada saat halaman dimuat
             displayMarkers();
 
-            // Atur event listener untuk form filter
             document.getElementById('kelurahanFilter').addEventListener('change', applyFilter);
             document.getElementById('kecamatanFilter').addEventListener('change', applyFilter);
             document.getElementById('statusFilter').addEventListener('change', applyFilter);
             document.getElementById('namaInstansiFilter').addEventListener('input', applyFilter);
         }
 
-        function displayMarkers() {
-            // Hapus semua marker yang ada
-            clearMarkers();
-
-            var locations = <?php echo json_encode($locations); ?>;
-
-            // Tambahkan kembali marker sesuai data terbaru
-            for (var i = 0; i < locations.length; i++) {
-                addMarker(locations[i]);
-            }
+        function createPopupContent(location) {
+            return `
+                <div class="flex flex-col">
+                    <h2>Instansi: ${location.nama_instansi}</h2>
+                    <h2>Kelurahan: ${location.kelurahan}</h2>
+                    <h2>Kecamatan: ${location.kecamatan}</h2>
+                    <h2>Koordinat Lintang: ${location.lat}&deg;</h2>
+                    <h2>Koordinat Bujur: ${location.lng}&deg;</h2>
+                    <h2>Status: ${location.status}</h2>
+                    <button onclick="handleButtonClick('${location.nama_instansi}')" class="btn btn-info text-white">Lihat Detail</button>
+                </div>`;
         }
 
         function addMarker(location) {
@@ -163,44 +166,37 @@
                 })
             }).addTo(map);
 
-            marker.bindPopup(
-                'Instansi: ' + location.nama_instansi + '<br>' +
-                'Kelurahan: ' + location.kelurahan + '<br>' +
-                'Kecamatan: ' + location.kecamatan + '<br>' +
-                'Status: ' + location.status
-            );
+            marker.bindPopup(createPopupContent(location));
 
             markers.push(marker);
         }
 
         function clearMarkers() {
-            // Hapus semua marker yang ada dari peta
             for (var i = 0; i < markers.length; i++) {
                 map.removeLayer(markers[i]);
             }
-
-            // Bersihkan array marker
             markers = [];
         }
 
+        function displayMarkers() {
+            clearMarkers();
+            for (var i = 0; i < locations.length; i++) {
+                addMarker(locations[i]);
+            }
+        }
+
         function applyFilter() {
-            // Dapatkan nilai dari elemen form
+            clearMarkers();
+
             var kelurahan = document.getElementById('kelurahanFilter').value;
             var kecamatan = document.getElementById('kecamatanFilter').value;
             var status = document.getElementById('statusFilter').value.toLowerCase();
             var namaInstansi = document.getElementById('namaInstansiFilter').value.toLowerCase();
 
-            // Hapus semua marker yang ada
-            clearMarkers();
-
-            var locations = <?php echo json_encode($locations); ?>;
-
-            // Tambahkan kembali marker sesuai dengan data terbaru dan kriteria filter
             for (var i = 0; i < locations.length; i++) {
                 var location = locations[i];
                 var matchFilter = false;
 
-                // Periksa kondisi untuk setiap filter
                 if (kelurahan === 'all' || kelurahan === location.kelurahan) {
                     if (kecamatan === 'all' || kecamatan === location.kecamatan) {
                         if (status === 'all' || status === location.status.toLowerCase()) {
@@ -211,11 +207,125 @@
                     }
                 }
 
-                // Tambahkan marker jika memenuhi kriteria filter
                 if (matchFilter) {
                     addMarker(location);
                 }
             }
+        }
+
+        function handleButtonClick(namaInstansi) {
+            var location = findLocationByName(namaInstansi);
+            var dataInstansiDiv = document.getElementById('dataInstansi');
+
+            if (location) {
+                dataInstansiDiv.innerHTML = `
+                    <div class="grid grid-cols-6 grid-rows-6 gap-4">
+                        <div class="col-span-3">
+                            <label class="form-control w-full">
+                              <div class="label">
+                                <span class="label-text">Nama Instansi</span>
+                              </div>
+                              <input type="text" readonly value="${location.nama_instansi}" class="input input-bordered w-full" />
+                            </label>
+                        </div>
+                        <div class="col-span-3 col-start-4">
+                            <label class="form-control w-full">
+                              <div class="label">
+                                <span class="label-text">Nama Pimpinan Instansi</span>
+                              </div>
+                              <input type="text" readonly value="${location.pimpinan_instansi}" class="input input-bordered w-full" />
+                            </label>
+                        </div>
+                        <div class="col-span-3 row-start-2">
+                            <label class="form-control w-full">
+                              <div class="label">
+                                <span class="label-text">Peruntukan</span>
+                              </div>
+                              <input type="text" readonly value="${location.peruntukan}" class="input input-bordered w-full" />
+                            </label>
+                        </div>
+                        <div class="col-span-3 col-start-4 row-start-2">
+                            <label class="form-control w-full">
+                              <div class="label">
+                                <span class="label-text">Kategori Proyek</span>
+                              </div>
+                              <input type="text" readonly value="${location.kategori_proyek}" class="input input-bordered w-full" />
+                            </label>
+                        </div>
+                        <div class="col-span-3 row-span-2 row-start-3">
+                            <label class="form-control w-full h-full">
+                              <div class="label">
+                                <span class="label-text">Lokasi</span>
+                              </div>
+                              <textarea class="textarea textarea-bordered h-full resize-none" readonly>${location.lokasi}</textarea>
+                            </label>
+                        </div>
+                        <div class="col-span-3 col-start-4 row-start-3">
+                            <label class="form-control w-full">
+                              <div class="label">
+                                <span class="label-text">Rencana Tata Ruang</span>
+                              </div>
+                              <input type="text" readonly value="${location.rencana_tr}" class="input input-bordered w-full" />
+                            </label>
+                        </div>
+                        <div class="col-span-3 col-start-4 row-start-4">
+                            <label class="form-control w-full">
+                              <div class="label">
+                                <span class="label-text">Status</span>
+                              </div>
+                              <input type="text" readonly value="${location.status}" class="input input-bordered w-full" />
+                            </label>
+                        </div>
+                        <div class="col-span-2 row-start-5">
+                            <label class="form-control w-full">
+                              <div class="label">
+                                <span class="label-text">Perkiraan Luas</span>
+                              </div>
+                              <input type="text" readonly value="${location.perkiraan_l}m&sup2" class="input input-bordered w-full" />
+                            </label>
+                        </div>
+                        <div class="col-span-2 col-start-3 row-start-5">
+                            <label class="form-control w-full">
+                              <div class="label">
+                                <span class="label-text">Perkiraan Panjang</span>
+                              </div>
+                              <input type="text" readonly value="${location.perkiraan_p}m" class="input input-bordered w-full" />
+                            </label>
+                        </div>
+                        <div class="col-span-2 col-start-5 row-start-5">
+                            <label class="form-control w-full">
+                              <div class="label">
+                                <span class="label-text">Perkiraan Alokasi</span>
+                              </div>
+                              <input type="text" readonly value="${location.perkiraan_a}m&sup2" class="input input-bordered w-full" />
+                            </label>
+                        </div>
+                        <div class="col-span-3 row-start-6">
+                            <label class="form-control w-full">
+                              <div class="label">
+                                <span class="label-text">Tanggal Mulai Persiapan</span>
+                              </div>
+                              <input type="text" readonly value="${location.m_persiapan}" class="input input-bordered w-full" />
+                            </label>
+                        </div>
+                        <div class="col-span-3 col-start-4 row-start-6">
+                            <label class="form-control w-full">
+                              <div class="label">
+                                <span class="label-text">Tanggal Mulai Pelaksanaan</span>
+                              </div>
+                              <input type="text" readonly value="${location.m_pelaksanaan}" class="input input-bordered w-full" />
+                            </label>
+                        </div>
+                    </div>`
+            } else {
+                dataInstansiDiv.innerHTML = 'Data tidak ditemukan';
+            }
+        }
+
+        function findLocationByName(namaInstansi) {
+            return locations.find(function (location) {
+                return location.nama_instansi === namaInstansi;
+            });
         }
 
         document.addEventListener('DOMContentLoaded', initMap);
@@ -223,3 +333,4 @@
 
 </body>
 </html>
+        
