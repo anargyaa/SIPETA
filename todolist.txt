@@ -7,8 +7,8 @@
 -Report data perencanaan (Report data bisa dilihat waktu (/minggu /bulan /tahun))
 -Perbaikan database dibagian relasi (Table Konsultasi dan User)
 -Membuat filter di data perencanaan (Filter mencari sesuai dengan : Username , Email, Status)
--Menambahkan Satus undangan ke kantor <BERES>
--Perbaikan form input agar tidak bisa diisi oleh tag html <BERES>
+-Menambahkan Satus undangan ke kantor 
+-Perbaikan form input agar tidak bisa diisi oleh tag html 
 -Ubah judul project (Bayang2 menjadi Pengajuan formulir pengadaan tanah berbasis web)
--Halaman data konsultasi <BERES>
+-Halaman data konsultasi 
 -Admin bisa membalas pesan konsultasi dan mengirimkannya ke emal otomatis oleh php
