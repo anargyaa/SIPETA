@@ -19,14 +19,29 @@
 			elseif($_GET["page"] == "peta"){
 				include 'peta.php';
 			}
-			elseif($_GET["page"] == "konsultasi"){
-				include 'konsultasi.php';
+			elseif($_GET["page"] == "dashboard"){
+				include 'dashboard.php';
 			}
-			elseif($_GET["page"] == "signin"){
-				include 'signin.php';
+			elseif($_GET["page"] == "pengajuan"){
+				include 'pengajuan.php';
 			}
-			elseif($_GET["page"] == "signup"){
-				include 'signup.php';
+			elseif($_GET["page"] == "balasan"){
+				include 'balasan.php';
+			}
+			elseif($_GET["page"] == "detail"){
+				include 'detail.php';
+			}
+			elseif($_GET["page"] == "tambah"){
+				include 'tambah.php';
+			}
+			elseif($_GET["page"] == "edit"){
+				include 'edit.php';
+			}
+			elseif($_GET["page"] == "profile"){
+				include 'profile.php';
+			}
+			elseif($_GET["page"] == "pengajuan-admin"){
+				include 'pengajuan-admin.php';
 			}
 		}
 		else{

@@ -11,7 +11,7 @@
     <p class="text-center">Lihat dan cari lokasi tanah yang sudah terdaftar di Kabupaten Sukabumi.</p>
 </div>
 <div class="w-8/12 min-h-screen mt-12 mb-12 p-4 flex flex-col rounded rounded-3xl bg-neutral-100 gap-10 shadow-xl">
-        <form action="" class="w-full p-4 flex justify-between rounded rounded-2xl shadow-md bg-neutral-200 gap-4">
+        <form action="" class="w-full p-4 flex justify-between rounded rounded-2xl shadow-md bg-base-100 gap-4">
             <div id="kelurahan">
                 <div class="rounded rounded-2xl ">
                     <select id="kelurahanFilter" class="select select-bordered w-full max-w-xs rounded rounded-xl">
@@ -47,11 +47,11 @@
             </div>
         </form>
 
-        <div class="w-full bg-neutral-200 rounded-3xl p-2 shadow-md">
+        <div class="w-full bg-base-100 rounded-3xl p-2 shadow-md">
             <div id="map" class="rounded-2xl"></div>
         </div>
 
-        <div id="dataInstansi" class="w-full p-4 rounded rounded-3xl shadow-md bg-neutral-200 flex flex-col">
+        <div id="dataInstansi" class="w-full p-4 rounded rounded-3xl shadow-md bg-base-100 flex flex-col">
             
         </div>
 </div>
