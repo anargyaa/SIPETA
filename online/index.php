@@ -1,3 +1,14 @@
+<?php 
+
+	include '../controller/conn.php';
+	session_start();
+
+	if (!isset($_SESSION['username'])) {
+		header("Location: ../index.php?page=signin");
+	}
+?>
+
+
 <!DOCTYPE html>
 <html data-theme="light">
 <head>
@@ -13,8 +24,8 @@
 	<div class="flex flex-col items-center justify-center">
 	<?php
 		if(isset($_GET["page"])){
-			if($_GET["page"] == "beranda"){
-				include 'beranda.php';
+			if($_GET["page"] == "../beranda"){
+				include '../beranda.php';
 			}
 			elseif($_GET["page"] == "peta"){
 				include 'peta.php';
@@ -45,11 +56,11 @@
 			}
 		}
 		else{
-			include 'beranda.php';
+			include 'dashboard.php';
 		}
 	?>
 	</div>
 	
-	<?php include 'footer.php'; ?>
+	<?php include '../footer.php'; ?>
 </body>
 </html>

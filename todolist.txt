@@ -1,14 +1,20 @@
--Buat halaman untuk menampilkan data tanah yang sudah di inputkan user dengan syarat status formulir harus sudah (SELESAI) *data koordinat muncul sesuai dengan yang ada di database <BERES>
 -Tentukan / Menambahkan validasi Format Koordinat Lintang dan Bujur di Front-end dan Back-end
 
--Layout (Fokus pada tampilan halaman utama dan data perencanaan)
--Hak Akses ()
 -Notifikasi untuk user (Memberi mark di navbar jika ada perubahan data status)
 -Report data perencanaan (Report data bisa dilihat waktu (/minggu /bulan /tahun))
 -Perbaikan database dibagian relasi (Table Konsultasi dan User)
--Membuat filter di data perencanaan (Filter mencari sesuai dengan : Username , Email, Status)
--Menambahkan Satus undangan ke kantor 
--Perbaikan form input agar tidak bisa diisi oleh tag html 
--Ubah judul project (Bayang2 menjadi Pengajuan formulir pengadaan tanah berbasis web)
--Halaman data konsultasi 
 -Admin bisa membalas pesan konsultasi dan mengirimkannya ke emal otomatis oleh php
+
+-Perbaikan form input agar tidak bisa diisi oleh tag html <BERES>
+-Membuat filter di data perencanaan (Filter Kecamatan-KategoriProyek-Status) <BERES>
+-Menambahkan Satus undangan ke kantor <BERES>
+-Halaman data konsultasi <BERES>
+-Layout (Fokus pada tampilan halaman utama dan data perencanaan) <BERES>
+-Ubah judul project (Bayang2 menjadi Pengajuan formulir pengadaan tanah berbasis web) <GA JADI>
+-Hak Akses () <GAJE>
+
+-Buat halaman untuk menampilkan data tanah yang sudah di inputkan user dengan syarat status formulir harus sudah (SELESAI) *data koordinat muncul sesuai dengan yang ada di database <BERES>
+
+-misahin admin sama user di halaman dashboard, pengajuan, profile, balasan <BERES(DETAIL)>
+edit status bisa langsung dihalaman detail admin
+-dihalaman balasan admin ngirim pesan ke email otomatis pake php mailer sedangkan user bisa lihat pesan di email

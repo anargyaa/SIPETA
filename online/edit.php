@@ -111,6 +111,7 @@
 		  </div>
 		  <input type="text" placeholder="Type here" class="input input-bordered w-full" />
 		</label>
+		
 		<div class="flex gap-2 mt-4 justify-end">
 			<button class="btn btn-error text-white hover:outline hover:outline-2 hover:outline-offset-2" value="kembali" name="kembali">Kembali</button>
 			<button class="btn btn-info text-white hover:outline hover:outline-2 hover:outline-offset-2" value="tambah" name="tambah">Kirim</button>

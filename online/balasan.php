@@ -14,6 +14,14 @@
 	        <th>Topik</th>
 	        <th>Pesan</th>
 	        <th>Balasan</th>
+	        <?php
+	        	if (isset($_SESSION['role'])) {
+	        		if ($_SESSION['role'] == 'admin') {
+	        			echo '<th>Aksi</th>';
+	        		}
+	        	}
+
+	        ?>
 	      </tr>
 	    </thead>
 	    <tbody>
@@ -25,6 +33,14 @@
 	        <td>Topik</td>
 	        <td><textarea class="w-full h-auto resize-none">Pesan</textarea></td>
 	        <td><textarea class="w-full h-auto resize-none">Balasan</textarea></td>
+	        <?php
+	        	if (isset($_SESSION['role'])) {
+	        		if ($_SESSION['role'] == 'admin') {
+	        			echo '<td><button class="btn btn-info text-white hover:outline hover:outline-2 hover:outline-offset-2" value="tambah" name="tambah">Konsultasi</button></td>';
+	        		}
+	        	}
+
+	        ?>
 	      </tr>
 	    </tbody>
 	  </table>

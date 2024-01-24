@@ -1,3 +1,11 @@
+<?php 
+
+	include 'controller/conn.php';
+	session_start();
+
+?>
+
+
 <!DOCTYPE html>
 <html data-theme="light">
 <head>

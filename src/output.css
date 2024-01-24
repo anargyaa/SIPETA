@@ -9755,11 +9755,6 @@ details.collapse summary::-webkit-details-marker {
   background-color: rgb(245 245 245 / var(--tw-bg-opacity));
 }
 
-.bg-neutral-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 229 229 / var(--tw-bg-opacity));
-}
-
 .bg-yellow-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(113 63 18 / var(--tw-bg-opacity));
@@ -10432,6 +10427,10 @@ details.collapse summary::-webkit-details-marker {
 
 .forced-color-adjust-none {
   forced-color-adjust: none;
+}
+
+.\[hostname\:port\] {
+  hostname: port;
 }
 
 @media (hover:hover) {

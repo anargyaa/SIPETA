@@ -111,6 +111,25 @@
 		  </div>
 		  <input type="text" readonly value="" class="input input-bordered w-full" />
 		</label>
+		<?php
+			if (isset($_SESSION['role'])) {
+				if ($_SESSION['role'] == 'admin') {
+					echo '
+						<label class="form-control w-full">
+						  <div class="label">
+						    <span class="label-text">Status</span>
+						  </div>
+						  <select class="select select-bordered w-full" name="topik" required>
+							<option disabled selected>Status</option>
+							<option value="Peninjauan">Peninjauan</option>
+							<option value="Undangan Ke Kantor DPTR Kab.Sukabumi">Undangan Ke Kantor DPTR Kab.Sukabumi</option>
+							<option value="Terdaftar">Terdaftar</option>
+						  </select>
+						</label>
+					';
+				}
+			}
+		?>
 		<div class="flex gap-2 mt-4 justify-end">
 			<button class="btn btn-error text-white hover:outline hover:outline-2 hover:outline-offset-2" value="kembali" name="kembali">Hapus</button>
 			<button class="btn btn-warning text-white hover:outline hover:outline-2 hover:outline-offset-2" value="tambah" name="tambah">Edit</button>
@@ -121,13 +140,13 @@
 							<button class="btn btn-success text-white hover:outline hover:outline-2 hover:outline-offset-2" value="tambah" name="tambah">Update Status</button>
 
 						';
-					}
-				} else {
-					echo '
-						<button class="btn btn-success text-white hover:outline hover:outline-2 hover:outline-offset-2" value="tambah" name="tambah">Selesai</button>
+					} else {
+						echo '
+							<button class="btn btn-info text-white hover:outline hover:outline-2 hover:outline-offset-2" onclick="window.location.href=\'halaman_baru.php\'">Keluar</button>
 
-					';
-				}
+						';
+					}
+				} 
 			?>
 
 

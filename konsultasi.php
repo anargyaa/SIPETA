@@ -1,9 +1,19 @@
+<?php
+
+	session_start();
+	$tokenk = md5(uniqid(rand(), true));
+	$_SESSION['tokenk'] = $tokenk;
+
+?>
+
 <div class="w-[10/12] sm:w-6/12 flex flex-col justify-center h-fit mt-24">
 	<h1 class="text-6xl text-center font-bold">KONSULTASI</h1>
 	<p class="text-center">Silahkan sampaikan pertanyaan atau permasalahan dengan mengisi form dibawah ini, dan jawaban akan disampaikan melalui email yang didaftarkan.</p>
 </div>
 <div class="w-8/12 h-fit my-12 p-4 bg-neutral-100 rounded-3xl shadow-2xl">
 	<form action="./controller/add-proc.php" method="post" accept-charset="utf-8" class="bg-base-100 rounded-2xl p-4 shadow-md" >				
+		<input type="hidden" name="tokenk" value="<?=$tokenk?>">
+
 		<div class="grid grid-cols-4 grid-rows-5 gap-4">
 		    <div class="h-fit col-span-4">
 		    	<label class="form-control w-full">
@@ -51,7 +61,7 @@
 				</label>
 		    </div>
 		    <div class="h-fit col-span-4 row-start-5">
-		   		<button class="btn btn-info text-white hover:outline hover:outline-2 hover:outline-offset-2 float-right" name="konsultasi" value="konsultasi">Kirim</button>
+		   		<button id="button" class="btn btn-info text-white hover:outline hover:outline-2 hover:outline-offset-2 float-right" name="konsultasi" value="konsultasi">Kirim</button>
 		    </div>
 		</div>
 	</form>
